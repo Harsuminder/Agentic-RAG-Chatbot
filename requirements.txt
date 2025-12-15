@@ -1,0 +1,11 @@
+langchain
+langchain_community
+langchain_core
+langchain-chroma
+langchain_groq
+langchain_huggingface
+langchain-text-splitters
+chromadb
+beautifulsoup4
+requests
+streamlit
