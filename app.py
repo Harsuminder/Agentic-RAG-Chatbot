@@ -10,39 +10,38 @@ from dotenv import load_dotenv
 load_dotenv()
 from langchain_groq import ChatGroq
 
+
 groq_api_key= os.getenv("GROQ_API_KEY")
 
 
-# Load Document 
-from langchain_community.document_loaders import WebBaseLoader
+@st.cache_resource
+def setup_retriever():
+    from langchain_community.document_loaders import WebBaseLoader
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+    from langchain_community.embeddings import HuggingFaceEmbeddings
+    from langchain_community.vectorstores import Chroma
 
-URL = "https://arxiv.org/html/1706.03762"
+    # Load Document 
+    URL = "https://arxiv.org/html/1706.03762"
+    loader = WebBaseLoader(URL)
+    documents = loader.load()
 
-loader = WebBaseLoader(URL)
-documents = loader.load()
+    # Chunking
+    text_splitter= RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    chunks= text_splitter.split_documents(documents)
 
-# Chunking
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+    # Embeddings
+    embedding_model= HuggingFaceEmbeddings (model_name="sentence-transformers/all-MiniLM-L6-v2")
+    vectorstore = Chroma.from_documents(documents=chunks,embedding=embedding_model)
 
-text_splitter= RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    # Creating retriever
+    retriever= vectorstore.as_retriever(search_type="similarity", search_kwargs={"k":3})
+    return retriever
 
-chunks= text_splitter.split_documents(documents)
-
-# Embeddings
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
-
-embedding_model= HuggingFaceEmbeddings (model_name="sentence-transformers/all-MiniLM-L6-v2")
-
-vectorstore = Chroma.from_documents(documents=chunks,embedding=embedding_model)
-
-# Creating retriever
-
-retriever= vectorstore.as_retriever(search_type="similarity", search_kwargs={"k":3})
+retriever=setup_retriever()
 
 # LLM
 from langchain_groq import ChatGroq
-
 llm= ChatGroq(model="openai/gpt-oss-20b", groq_api_key= groq_api_key, temperature= 0)
 
 # RAG prompt 
