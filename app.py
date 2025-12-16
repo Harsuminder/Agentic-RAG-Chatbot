@@ -72,8 +72,8 @@ def format_docs(docs):
     return "\n\n".join(formatted)
 
 # RAG Chain
-'''Any normal Python function can be used in a LangChain chain if and only if it is wrapped as a Runnable
-(usually with RunnableLambda) and correctly returns an output.'''
+# Any normal Python function can be used in a LangChain chain if and only if it is wrapped as a Runnable
+# (usually with RunnableLambda) and correctly returns an output.
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda
 from operator import itemgetter
@@ -122,6 +122,13 @@ import uuid
 if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())
 
+# adding Clear cache
+top_left, top_right = st.columns([0.85, 0.15])
+with top_right:
+    if st.button("🧹 Clear Chat"):
+        st.session_state.messages=[] # clear streamlit UI messages
+        store[st.session_state.session_id] = ChatMessageHistory() #reset langchain Memory for this session
+        st.rerun()
 
 #Wrap the rag chain with message history
 conversational_rag= RunnableWithMessageHistory(
