@@ -12,6 +12,7 @@ streamlit
 datasets
 numpy
 pandas
+plotly
 tqdm
 evaluate
 python-dotenv
