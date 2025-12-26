@@ -1,6 +1,6 @@
-# Local RAG Implementation - No Chunking Evaluation
+# Local RAG Implementation 
 
-This implementation evaluates a RAG (Retrieval-Augmented Generation) pipeline using a local Ollama setup with a no-chunking strategy. Each context from the SQuAD v2 dataset is stored as a single document chunk, and retrieval is evaluated by checking if the golden context ID appears in the top K retrieved contexts.
+This implementation evaluates a RAG (Retrieval-Augmented Generation) pipeline using a local Ollama setup. Each context from the SQuAD v2 dataset is stored as a single document chunk, and retrieval is evaluated by checking if the golden context ID appears in the top K retrieved contexts.
 
 ## Setup
 
