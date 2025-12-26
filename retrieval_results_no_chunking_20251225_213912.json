@@ -1,0 +1,139 @@
+{
+  "timestamp": "2025-12-25T21:39:12.945085",
+  "evaluation_method": "ID-based Recall@K (no chunking)",
+  "retriever_metrics": {
+    "recall_at_k": 0.7142857142857143,
+    "correct_retrievals": 15,
+    "total_answerable": 21
+  },
+  "config": {
+    "embedding_model": "BAAI/bge-base-en-v1.5",
+    "llm_model": "llama3:8b",
+    "device": "cuda",
+    "k_retrieved": 3,
+    "chunking": false,
+    "description": "Each context = one chunk, evaluation by ID matching"
+  },
+  "sample_results": [
+    {
+      "question": "In what country is Normandy located?",
+      "question_id": "56ddde6b9a695914005b9628",
+      "golden_context_id": "context_1",
+      "found": true,
+      "rank": 2,
+      "retrieved_context_ids": [
+        "context_4",
+        "context_1",
+        "context_31"
+      ]
+    },
+    {
+      "question": "When were the Normans in Normandy?",
+      "question_id": "56ddde6b9a695914005b9629",
+      "golden_context_id": "context_1",
+      "found": true,
+      "rank": 1,
+      "retrieved_context_ids": [
+        "context_1",
+        "context_17",
+        "context_2"
+      ]
+    },
+    {
+      "question": "From which countries did the Norse originate?",
+      "question_id": "56ddde6b9a695914005b962a",
+      "golden_context_id": "context_1",
+      "found": true,
+      "rank": 1,
+      "retrieved_context_ids": [
+        "context_1",
+        "context_6",
+        "context_5"
+      ]
+    },
+    {
+      "question": "Who was the Norse leader?",
+      "question_id": "56ddde6b9a695914005b962b",
+      "golden_context_id": "context_1",
+      "found": true,
+      "rank": 1,
+      "retrieved_context_ids": [
+        "context_1",
+        "context_20",
+        "context_6"
+      ]
+    },
+    {
+      "question": "What century did the Normans first gain their separate identity?",
+      "question_id": "56ddde6b9a695914005b962c",
+      "golden_context_id": "context_1",
+      "found": true,
+      "rank": 1,
+      "retrieved_context_ids": [
+        "context_1",
+        "context_18",
+        "context_7"
+      ]
+    },
+    {
+      "question": "Who was the duke in the battle of Hastings?",
+      "question_id": "56dddf4066d3e219004dad5f",
+      "golden_context_id": "context_2",
+      "found": false,
+      "rank": null,
+      "retrieved_context_ids": [
+        "context_17",
+        "context_16",
+        "context_20"
+      ]
+    },
+    {
+      "question": "Who ruled the duchy of Normandy",
+      "question_id": "56dddf4066d3e219004dad60",
+      "golden_context_id": "context_2",
+      "found": false,
+      "rank": null,
+      "retrieved_context_ids": [
+        "context_17",
+        "context_4",
+        "context_1"
+      ]
+    },
+    {
+      "question": "What religion were the Normans",
+      "question_id": "56dddf4066d3e219004dad61",
+      "golden_context_id": "context_2",
+      "found": true,
+      "rank": 1,
+      "retrieved_context_ids": [
+        "context_2",
+        "context_1",
+        "context_7"
+      ]
+    },
+    {
+      "question": "What is the original meaning of the word Norman?",
+      "question_id": "56dde0379a695914005b9636",
+      "golden_context_id": "context_3",
+      "found": true,
+      "rank": 1,
+      "retrieved_context_ids": [
+        "context_3",
+        "context_1",
+        "context_18"
+      ]
+    },
+    {
+      "question": "When was the Latin version of the word Norman first recorded?",
+      "question_id": "56dde0379a695914005b9637",
+      "golden_context_id": "context_3",
+      "found": true,
+      "rank": 1,
+      "retrieved_context_ids": [
+        "context_3",
+        "context_1",
+        "context_2"
+      ]
+    }
+  ]
+}

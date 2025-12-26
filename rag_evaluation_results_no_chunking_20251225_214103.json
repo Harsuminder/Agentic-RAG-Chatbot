@@ -1,0 +1,100 @@
+{
+  "timestamp": "2025-12-25T21:41:03.676573",
+  "evaluation_method": "ID-based Recall@K with ordered word recall",
+  "retriever_metrics": {
+    "recall_at_k": 0.7142857142857143,
+    "correct_retrievals": 15,
+    "total_answerable": 21
+  },
+  "answer_quality_metrics": {
+    "recall": 0.4,
+    "exact_match": 0.2,
+    "std_recall": 0.48989794855663565,
+    "std_em": 0.4000000000000001
+  },
+  "dataset_stats": {
+    "total_samples": 10,
+    "answerable_samples": 6,
+    "unanswerable_samples": 4
+  },
+  "config": {
+    "embedding_model": "BAAI/bge-base-en-v1.5",
+    "llm_model": "llama3:8b",
+    "device": "cuda",
+    "k_retrieved": 3,
+    "chunking": false,
+    "description": "Each context = one chunk, evaluation by ID matching"
+  },
+  "sample_predictions": [
+    {
+      "question": "In what country is Normandy located?",
+      "prediction": "France.",
+      "ground_truth": "France",
+      "recall": 1.0,
+      "exact_match": 1.0
+    },
+    {
+      "question": "When were the Normans in Normandy?",
+      "prediction": "According to the provided context, the Normans gave their name to Normandy, a region in France, in the 10th and 11th centuries.",
+      "ground_truth": "10th and 11th centuries",
+      "recall": 1.0,
+      "exact_match": 0.0
+    },
+    {
+      "question": "From which countries did the Norse originate?",
+      "prediction": "The Norse originated from Denmark, Iceland, Norway.",
+      "ground_truth": "Denmark, Iceland and Norway",
+      "recall": 0.0,
+      "exact_match": 0.0
+    },
+    {
+      "question": "Who was the Norse leader?",
+      "prediction": "Rollo.",
+      "ground_truth": "Rollo",
+      "recall": 1.0,
+      "exact_match": 1.0
+    },
+    {
+      "question": "What century did the Normans first gain their separate identity?",
+      "prediction": "According to the provided context, the distinct cultural and ethnic identity of the Normans emerged initially in the \"first half of the 10th century\".",
+      "ground_truth": "10th century",
+      "recall": 1.0,
+      "exact_match": 0.0
+    },
+    {
+      "question": "Who gave their name to Normandy in the 1000's and 1100's",
+      "prediction": "The people who gave their name to Normandy in the 10th and 11th centuries were the Normans, descended from Norse (\"Norman\" comes from \"Norseman\") raiders and pirates from Denmark, Iceland, and Norway.",
+      "ground_truth": null,
+      "recall": 0.0,
+      "exact_match": 0.0
+    },
+    {
+      "question": "What is France a region of?",
+      "prediction": "I don't know. The answer cannot be found in the provided context.",
+      "ground_truth": null,
+      "recall": 0.0,
+      "exact_match": 0.0
+    },
+    {
+      "question": "Who did King Charles III swear fealty to?",
+      "prediction": "According to the provided context, King Charles III was sworn fealty to by Rollo, the leader of the Norse raiders and pirates from Denmark, Iceland, and Norway.",
+      "ground_truth": null,
+      "recall": 0.0,
+      "exact_match": 0.0
+    },
+    {
+      "question": "When did the Frankish identity emerge?",
+      "prediction": "I don't know. The provided context does not mention the emergence of the Frankish identity. It only mentions the Normans and their assimilation with the native Frankish and Roman-Gaulish populations, but it does not provide information on when the Frankish identity emerged.",
+      "ground_truth": null,
+      "recall": 0.0,
+      "exact_match": 0.0
+    },
+    {
+      "question": "Who was the duke in the battle of Hastings?",
+      "prediction": "Duke William II of Normandy.",
+      "ground_truth": "William the Conqueror",
+      "recall": 0.0,
+      "exact_match": 0.0
+    }
+  ]
+}

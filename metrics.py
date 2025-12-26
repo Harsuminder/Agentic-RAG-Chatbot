@@ -47,18 +47,14 @@ def evaluate_single(prediction: str, ground_truths: List[str]) -> Dict:
     Evaluate a single prediction against multiple ground truth answers.
     Returns best F1 and EM scores.
     """
-    # FIX: Handle None, empty list, or empty strings
     if not ground_truths or ground_truths == [] or ground_truths == [None]:
         ground_truths = [""]
     
-    # Ensure all are strings
     ground_truths = [str(gt) if gt is not None else "" for gt in ground_truths]
     
-    # Calculate scores
     f1_scores = [f1_score(prediction, gt) for gt in ground_truths]
     em_scores = [exact_match(prediction, gt) for gt in ground_truths]
     
-    # FIX: Safety check - if somehow still empty, return zeros
     if not f1_scores or not em_scores:
         return {'f1': 0.0, 'em': 0.0}
     
@@ -68,9 +64,7 @@ def evaluate_single(prediction: str, ground_truths: List[str]) -> Dict:
     }
 
 def evaluate_batch(predictions: List[str], ground_truths_list: List[List[str]]) -> Dict:
-    """
-    Evaluate a batch of predictions.
-    """
+    """Evaluate a batch of predictions."""
     results = [evaluate_single(pred, gt) for pred, gt in zip(predictions, ground_truths_list)]
     
     return {
@@ -81,9 +75,7 @@ def evaluate_batch(predictions: List[str], ground_truths_list: List[List[str]]) 
 
 def evaluate_unanswerable(predictions: List[str], is_impossible: List[bool], 
                          threshold_keywords: List[str] = None) -> Dict:
-    """
-    Evaluate how well the model handles unanswerable questions.
-    """
+    """Evaluate how well the model handles unanswerable questions."""
     if threshold_keywords is None:
         threshold_keywords = [
             "don't know", "don't have", "cannot", "not in", 
@@ -93,7 +85,6 @@ def evaluate_unanswerable(predictions: List[str], is_impossible: List[bool],
     unanswerable_predictions = [pred.lower() for pred, impossible in 
                                 zip(predictions, is_impossible) if impossible]
     
-    # Check if predictions contain unanswerable indicators
     detected_unanswerable = []
     for pred in unanswerable_predictions:
         detected = any(keyword in pred for keyword in threshold_keywords)
@@ -106,3 +97,4 @@ def evaluate_unanswerable(predictions: List[str], is_impossible: List[bool],
         'total_unanswerable': len(is_impossible) - sum(is_impossible),
         'total_answerable': sum(is_impossible)
     }
+
